@@ -15,6 +15,8 @@ import model.personaConsulta;
  */
 public class FrmAgregarPersona extends javax.swing.JFrame {
 
+    //HOLAA ESTO ES UN PARRAFO 
+    
     /**
      * Creates new form FrmAgregarPersona
      */
