@@ -23,27 +23,22 @@ public class FrmRegistroPersonas extends javax.swing.JFrame {
     }
 
     public void cargarTabla() {
-        DefaultTableModel model = new DefaultTableModel();//Se crea la plantilla de la tabla
+        DefaultTableModel modelo = new DefaultTableModel();//Se crea la plantilla de la tabla
         //Se procede a crear las plantillas de la tabla 
-        model.addColumn("INDICE");
-        model.addColumn("IDENTIFICACION");
-        model.addColumn("NOMBRE");
-        model.addColumn("APELLIDO");
-        model.addColumn("EDAD");
-        tblaRegistroPersona.setModel(model); //Se crea el modelo de la tabla 
+        modelo.addColumn("INDICE");
+        modelo.addColumn("IDENTIFICACIÓN");
+        modelo.addColumn("NOMBRE");
+        modelo.addColumn("APELLIDO");
+        modelo.addColumn("EDAD");
+        tblaRegistroPersona.setModel(modelo); //Se crea el modelo de la tabla 
         //Consultar la informacion de la base de datos 
-        personaConsulta pc = new personaConsulta();
-        ArrayList<Persona> listaPersona = new personaController().consultarListPersona();
+        modelo.setRowCount(0);
+        personaController pc = new personaController();
+        ArrayList<Persona> listaPersona =pc.consultarListPersona();
+        
         for (int indice = 0; indice < listaPersona.size(); indice++) {
             //Se organiza los datos en arreglo String
-            String[] datos = {
-                String.valueOf(indice + 1),
-                listaPersona.get(indice).getIdentificacion(),
-                listaPersona.get(indice).getNombre(),
-                listaPersona.get(indice).getApellido(),
-                String.valueOf(listaPersona.get(indice).getEdad())
-            };
-            model.addRow(datos);
+            modelo.addRow(new Object[]{String.valueOf(indice + 1),listaPersona.get(indice).getIdentificacion(),listaPersona.get(indice).getNombre(),listaPersona.get(indice).getApellido(),String.valueOf(listaPersona.get(indice).getEdad())});
         }
 
     }
@@ -88,26 +83,25 @@ public class FrmRegistroPersonas extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(83, 83, 83))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(129, 129, 129)
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(154, 154, 154)
+                        .addGap(15, 15, 15)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(206, 206, 206)
                         .addComponent(jButton1)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addGap(19, 19, 19)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
